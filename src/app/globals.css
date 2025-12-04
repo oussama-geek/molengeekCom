@@ -1,0 +1,618 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mapbox GL CSS */
+@import 'mapbox-gl/dist/mapbox-gl.css';
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* FullCalendar custom styles */
+.fullcalendar-wrapper .fc {
+  --fc-border-color: hsl(var(--border));
+  --fc-daygrid-event-dot-width: 8px;
+  --fc-event-border-color: var(--fc-border-color);
+  --fc-today-bg-color: hsl(var(--muted) / 0.3);
+  font-family: inherit;
+}
+
+.fullcalendar-wrapper .fc-button {
+  background-color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.5rem 1rem;
+  border-radius: calc(var(--radius) - 2px);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.fullcalendar-wrapper .fc-button:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.fullcalendar-wrapper .fc-button-active {
+  background-color: hsl(var(--primary));
+  opacity: 1;
+}
+
+.fullcalendar-wrapper .fc-daygrid-day-frame {
+  background-color: hsl(var(--background));
+}
+
+.fullcalendar-wrapper .fc-timegrid-slot {
+  background-color: hsl(var(--background));
+}
+
+.fullcalendar-wrapper .fc-col-header-cell {
+  background-color: hsl(var(--muted) / 0.5);
+  padding: 0.5rem;
+}
+
+.fullcalendar-wrapper .fc-event {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Ensure proper cursor for selection */
+.fullcalendar-wrapper .fc-daygrid-day,
+.fullcalendar-wrapper .fc-timegrid-col {
+  cursor: default;
+}
+
+.fullcalendar-wrapper .fc-daygrid-day-frame,
+.fullcalendar-wrapper .fc-timegrid-col-frame {
+  cursor: pointer !important;
+}
+
+/* Ensure selection area has proper cursor */
+.fullcalendar-wrapper .fc-highlight {
+  cursor: pointer !important;
+}
+
+.fullcalendar-wrapper .fc-select-marker {
+  cursor: pointer !important;
+}
+
+/* Prevent events from blocking selection */
+.fullcalendar-wrapper .fc-daygrid-day-events {
+  pointer-events: none;
+}
+
+.fullcalendar-wrapper .fc-daygrid-day-events .fc-event {
+  pointer-events: auto;
+}
+
+.fullcalendar-wrapper .fc-timegrid-col-events {
+  pointer-events: none;
+}
+
+.fullcalendar-wrapper .fc-timegrid-col-events .fc-event {
+  pointer-events: auto;
+}
+
+/* Override any not-allowed cursor during selection */
+.fullcalendar-wrapper .fc-daygrid-day.fc-day-disabled,
+.fullcalendar-wrapper .fc-timegrid-col.fc-timegrid-col-disabled {
+  cursor: not-allowed;
+}
+
+/* But allow selection to pass through disabled days during drag */
+.fullcalendar-wrapper .fc-daygrid-day-frame.fc-select-marker-start,
+.fullcalendar-wrapper .fc-daygrid-day-frame.fc-select-marker-end {
+  cursor: crosshair !important;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 273 70% 61%; /* #9D4EDD */
+    --primary-foreground: 273 70% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 222 51% 55%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(294, 68%, 42%), hsl(294, 68%, 55%));
+    --gradient-secondary: linear-gradient(135deg, hsl(252, 100%, 99%), hsl(294, 20%, 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(252, 100%, 99%), hsl(252, 50%, 98%));
+
+    --shadow-elegant: 0 10px 30px -10px hsl(294, 68%, 42% / 0.2);
+    --shadow-glow: 0 0 40px hsl(294, 68%, 55% / 0.15);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Ajouts manquants */
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 355.7 100% 97.3%;
+
+    --warning: 32.1 94.6% 43.7%;
+    --warning-foreground: 355.7 100% 97.3%;
+
+    /* SideGeek Brand Colors */
+    --brand-orange: 20.5 90.2% 48.2%;
+    --brand-orange-light: 24.6 95% 53.1%;
+    --brand-blue: 221.2 83.2% 53.3%;
+    --brand-blue-light: 213.1 93.9% 67.8%;
+    --brand-green: 142.1 76.2% 36.3%;
+    --brand-green-light: 158.1 64.4% 51.6%;
+
+    /* Gradients */
+    /* Dégradés personnalisés avec #811abd */
+    --gradient-warm: linear-gradient(135deg, #811abd, #c084fc);
+    --gradient-cool: linear-gradient(135deg, #811abd, #a259ff);
+    --gradient-success: linear-gradient(135deg, #811abd, #22c55e);
+    --gradient-hero: linear-gradient(135deg, #811abd, #f472b6);
+
+    /* Metric Card Gradients */
+    --gradient-primary: linear-gradient(135deg, #811abd, #c084fc);
+    --gradient-accent: linear-gradient(135deg, #a259ff, #8b5cf6);
+    --gradient-success: linear-gradient(135deg, #22c55e, #16a34a);
+    --gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
+
+
+    /* Shadows */
+    --shadow-warm: 0 10px 30px -10px hsl(var(--brand-orange) / 0.3);
+    --shadow-cool: 0 10px 30px -10px hsl(var(--brand-blue) / 0.3);
+    --shadow-success: 0 10px 30px -10px hsl(var(--brand-green) / 0.3);
+    /* --shadow-elegant déjà défini plus haut */
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 255 15% 12%; /* #1E1B24 */
+    --foreground: 220 20% 96%;
+
+    --card: 255 15% 15%;
+    --card-foreground: 220 20% 96%;
+
+    --popover: 255 15% 12%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 273 70% 61%; /* #9D4EDD */
+    --primary-foreground: 273 70% 98%;
+
+    --secondary: 255 15% 20%;
+    --secondary-foreground: 220 20% 98%;
+
+    --muted: 255 15% 20%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 222 51% 55%; /* #577BC1 */
+    --accent-foreground: 222 51% 95%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 255 15% 25%;
+    --input: 255 15% 25%;
+    --ring: 222 51% 55%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Ajouts manquants */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out;
+  }
+
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  .gradient-cool {
+    background: var(--gradient-cool);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-warm {
+    box-shadow: var(--shadow-warm);
+  }
+
+  .shadow-cool {
+    box-shadow: var(--shadow-cool);
+  }
+
+  .shadow-success {
+    box-shadow: var(--shadow-success);
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Metric Card Styles */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-warning {
+    background: var(--gradient-warning);
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .animate-counter-up {
+    animation: counterUp 1s ease-out forwards;
+  }
+
+  @keyframes scaleIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes counterUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .text-success {
+    color: hsl(var(--success));
+  }
+
+  .back-to-dashboard-btn {
+    color: #000000 !important;
+  }
+
+  .company-description-textarea {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.375rem !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    color: #000000 !important;
+    min-height: 80px !important;
+    width: 100% !important;
+  }
+
+  .dark .company-description-textarea {
+    background-color: #27272a !important;
+    border: 1px solid #404040 !important;
+    color: #ffffff !important;
+  }
+
+  .transaction-box {
+    background-color: #f3e8ff !important;
+    border-color: #e9d5ff !important;
+  }
+
+  .dark .transaction-box {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+
+  .transaction-title {
+    color: #000000 !important;
+  }
+
+  .dark .transaction-title {
+    color: #ffffff !important;
+  }
+
+  .transaction-amount {
+    color: #000000 !important;
+  }
+
+  .dark .transaction-amount {
+    color: #ffffff !important;
+  }
+
+  .payment-method-box {
+    background-color: #f3e8ff !important;
+    border-color: #e9d5ff !important;
+  }
+
+  .dark .payment-method-box {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+
+  .payment-method-title {
+    color: #000000 !important;
+  }
+
+  .dark .payment-method-title {
+    color: #ffffff !important;
+  }
+
+  .invoice-box {
+    background-color: #f3e8ff !important;
+    border-color: #e9d5ff !important;
+  }
+
+  .dark .invoice-box {
+    background-color: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+
+  .invoice-title {
+    color: #000000 !important;
+  }
+
+  .dark .invoice-title {
+    color: #ffffff !important;
+  }
+
+  .invoice-amount {
+    color: #000000 !important;
+  }
+
+  .dark .invoice-amount {
+    color: #ffffff !important;
+  }
+
+  .billing-title {
+    color: #000000 !important;
+  }
+
+  .dark .billing-title {
+    color: #ffffff !important;
+  }
+
+  .settings-title {
+    color: #000000 !important;
+  }
+
+  .dark .settings-title {
+    color: #ffffff !important;
+  }
+
+  .timezone-select {
+    border-color: #000000 !important;
+  }
+
+  .dark .timezone-select {
+    border-color: #ffffff !important;
+  }
+
+  .network-title {
+    color: #000000 !important;
+  }
+
+  .dark .network-title {
+    color: #ffffff !important;
+  }
+
+  .notifications-main-title {
+    color: #000000 !important;
+  }
+
+  .dark .notifications-main-title {
+    color: #ffffff !important;
+  }
+
+  .inbox-title {
+    color: #000000 !important;
+  }
+
+  .dark .inbox-title {
+    color: #ffffff !important;
+  }
+
+  .notification-item-title {
+    color: #000000 !important;
+  }
+
+  .dark .notification-item-title {
+    color: #ffffff !important;
+  }
+
+  /* KPI Text Colors - Force black in light mode */
+  .kpi-number {
+    color: #000000 !important;
+  }
+
+  .dark .kpi-number {
+    color: #ffffff !important;
+  }
+
+  .kpi-label {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+
+  .dark .kpi-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+}
